@@ -1,0 +1,6 @@
+Django==4.2.2
+psycopg2-binary==2.9.6
+djangorestframework==3.14.0
+django-rest-knox==4.2.0
+drf-flex-fields==1.0.2
+python-dateutil==2.8.2

@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'knox',
     'event',
     'django_filters',
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [

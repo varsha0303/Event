@@ -19,12 +19,33 @@ from django.urls import (path, include)
 from knox import views as knox_views
 from user.views import LoginView
 
+from rest_framework import permissions
+from drf_yasg.views import get_schema_view
+from drf_yasg import openapi
+
+
+schema_view = get_schema_view(
+    openapi.Info(
+        title="Event Management API",
+        default_version='v1',
+        description="Event Management API Documentation",
+        terms_of_service="https://www.google.com/policies/terms/",
+        contact=openapi.Contact(email="varshachavan0303@gmail.com"),
+        license=openapi.License(name="BSD License"),
+    ),
+    public=True,
+    permission_classes=(permissions.AllowAny,),
+)
+
+
 
 urlpatterns = [
+    path('documentation/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
     path(r'login/', LoginView.as_view(), name='knox_login'),
     path(r'logout/', knox_views.LogoutView.as_view(), name='knox_logout'),
     path(r'logoutall/', knox_views.LogoutAllView.as_view(), name='knox_logoutall'),
 
     path('admin/', admin.site.urls),
-    path('api/', include('event.urls'))
+    path('api/', include('event.urls')),
+
 ]

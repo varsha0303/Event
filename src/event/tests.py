@@ -6,7 +6,12 @@ from user import choices
 from event.models import Event
 
 class BaseTestCase(APITestCase):
-     def setUp(self):
+    """
+    This is base class for settings
+    Creating user and login to create token which will be needed by other API
+    """
+
+    def setUp(self):
         self.client = APIClient()
         User.objects.create_user(first_name="test", last_name="user", email="user@gmail.com",
                             password="Testing12$", user_type=choices.ADMIN)
